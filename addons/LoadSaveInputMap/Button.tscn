@@ -1,0 +1,176 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/LoadSaveInputMap/Button.gd" type="Script" id=1]
+[ext_resource path="res://addons/LoadSaveInputMap/loadBTN.gd" type="Script" id=2]
+[ext_resource path="res://addons/LoadSaveInputMap/BTNtheme.tres" type="Theme" id=3]
+[ext_resource path="res://addons/LoadSaveInputMap/HelpXButton.gd" type="Script" id=4]
+[ext_resource path="res://addons/LoadSaveInputMap/HelpButton.gd" type="Script" id=5]
+[ext_resource path="res://addons/LoadSaveInputMap/ItemList.gd" type="Script" id=6]
+[ext_resource path="res://addons/LoadSaveInputMap/allertPanel.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.2, 0.227451, 0.309804, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id=8]
+Panel/styles/panel = SubResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.2, 0.227451, 0.309804, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 0.313726, 0.313726, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id=10]
+Panel/styles/panel = SubResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0795898, 0.0902746, 0.125, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id=6]
+LineEdit/styles/normal = SubResource( 5 )
+
+[node name="LoadSave Input Map" type="VBoxContainer"]
+margin_left = 27.0
+margin_top = 34.0
+margin_right = 148.0
+margin_bottom = 90.0
+
+[node name="MainContainer" type="Control" parent="."]
+margin_right = 460.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 460, 300 )
+
+[node name="ItemList" type="ItemList" parent="MainContainer"]
+margin_top = -1.0
+margin_right = 250.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 250, 250 )
+items = [ "Default", null, false ]
+allow_reselect = true
+script = ExtResource( 6 )
+
+[node name="helpBTN" type="Button" parent="MainContainer"]
+margin_left = 443.0
+margin_top = 1.0
+margin_right = 455.0
+margin_bottom = 21.0
+theme = ExtResource( 3 )
+text = "?"
+script = ExtResource( 5 )
+
+[node name="HelpContainer" type="Control" parent="MainContainer"]
+visible = false
+margin_right = 460.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 460, 300 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Panel" type="Panel" parent="MainContainer/HelpContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -237.0
+margin_right = 237.0
+margin_bottom = 264.0
+rect_pivot_offset = Vector2( 237, 0 )
+theme = SubResource( 8 )
+
+[node name="Button" type="Button" parent="MainContainer/HelpContainer/Panel"]
+margin_left = 444.0
+margin_top = 3.0
+margin_right = 464.0
+margin_bottom = 23.0
+theme = ExtResource( 3 )
+text = "X"
+script = ExtResource( 4 )
+
+[node name="Label2" type="Label" parent="MainContainer/HelpContainer/Panel"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 8.0
+margin_top = 12.0
+margin_right = 467.0
+margin_bottom = 60.0
+text = "PLEASE BE AWARE THIS MIGHT BE INSTABLE
+THIS MIGHT CORRUPT YOUR PROJECT
+LOAD THE INPUT MAP BEFORE YOU START WORKING ON YOUR PROJECT"
+align = 1
+
+[node name="Label" type="Label" parent="MainContainer/HelpContainer/Panel"]
+margin_left = 27.0
+margin_top = 64.0
+margin_right = 420.0
+margin_bottom = 265.0
+text = "Info
+
+Creating an InputMap File
+1) Create your own InputMap from the InputMap tab
+2) Click on Save Input Map
+-It saves a file inside the plugin folder myInputMap.input
+
+Loading InputMapFile
+1)Click load Input Map - it autoDetects the existingFile
+2) Once loaded it will ask to reload the file, reload the project
+3) Input Map should be there
+"
+align = 1
+
+[node name="alertPanel" type="Panel" parent="MainContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 68.0
+margin_top = 224.0
+margin_right = 348.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 280, 25 )
+size_flags_horizontal = 3
+theme = SubResource( 10 )
+script = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="MainContainer/alertPanel"]
+size_flags_horizontal = 3
+text = "Only letters and numbers are allowed"
+
+[node name="Load" type="Button" parent="."]
+margin_top = 304.0
+margin_right = 460.0
+margin_bottom = 318.0
+theme = ExtResource( 3 )
+text = "Load Input Map"
+script = ExtResource( 2 )
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_top = 322.0
+margin_right = 460.0
+margin_bottom = 336.0
+theme = SubResource( 6 )
+max_length = 25
+placeholder_text = "Insert File name"
+
+[node name="Button" type="Button" parent="."]
+margin_top = 340.0
+margin_right = 460.0
+margin_bottom = 354.0
+theme = ExtResource( 3 )
+text = "Save Input Map"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="MainContainer/helpBTN" to="MainContainer/helpBTN" method="_on_helpBTN_pressed"]
+[connection signal="pressed" from="MainContainer/HelpContainer/Panel/Button" to="MainContainer/HelpContainer/Panel/Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="Load" to="Load" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
